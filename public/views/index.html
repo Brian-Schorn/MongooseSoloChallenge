@@ -48,8 +48,9 @@
       <section id="persons" class="row">
         <h2 >Person Listing</h2>
         Sorting By: <select ng-model="PCtrl.sortName" ng-dropdown >
+          <option ng-option value=''>ID</option>
           <option ng-option value="firstName">First Name</option>
-          <option ng-option value="lastName" selected="selected">Last Name</option>
+          <option ng-option value="lastName" >Last Name</option>
           <option ng-option value="hometown">Hometown</option>
           <option ng-option value="favMovie">Favorite Movie</option>
         </select>
