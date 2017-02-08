@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/styles/main.css" />
   </head>
   <body ng-app="personApp" >
-    <main class="container" ng-controller="PersonController">
+    <main class="container" ng-controller="PersonController as PCtrl">
       <h1>So People Right</h1>
       <!-- Submit a person -->
       <section id="personSubmission" class="row">
@@ -21,13 +21,13 @@
           <div class="row">
             <div class="three columns">
               <label for="currentPersonFirstName">First Name:</label>
-              <input type="text" id="currentPersonFirstName" name="firstName" />
+              <input type="text" id="currentPersonFirstName" name="firstName" ng-model="PCtrl.person.firstName" />
             </div>
 
             <div class="nine columns">
               <label for="currentPersonLastName">Last Name:</label>
-              <input type="text" id="currentPersonLastName" name="lastName" />
-              <button>Submit</button>
+              <input type="text" id="currentPersonLastName" name="lastName" ng-model="PCtrl.person.lastName" />
+              <button ng-click="PCtrl.addPerson(PCtrl.person)">Submit</button>
             </div>
 
           </div>
@@ -35,20 +35,23 @@
       </section>
       <!-- See submitted people -->
       <section id="persons" class="row">
-        <h2>Person Listing</h2>
+        <h2 >Person Listing</h2>
         <div id="personList">
-          <div class="person row">
+          <div class="person row" ng-repeat="person in PCtrl.PersonList">
+            <form>
             <div class="three columns">
               <label for="firstName">First Name:</label>
-              <input type="text" id="firstName" name="firstName" />
+              <input type="text" id="firstName" name="firstName"  ng-model="PCtrl[person._id].firstName" ng-init="PCtrl[person._id].firstName = person.firstName"/>
             </div>
 
             <div class="nine columns">
               <label for="lastName">Last Name:</label>
-              <input type="text" id="lastName" name="lastName" />
-              <button class="update">Update</button>
-              <button class="delete">Delete</button>
+              <input type="text" id="lastName" name="lastName" ng-model="PCtrl[person._id].lastName" ng-init="PCtrl[person._id].lastName = person.lastName"/>
+              <button class="update" ng-click="PCtrl.updatePerson(person._id, PCtrl[person._id])">Update</button>
+              <button class="delete" ng-click="PCtrl.deletePerson(person._id)">Delete</button>
+              <button class="reset" ng-click="PCtrl.resetList()">Reset</button>
             </div>
+            </form>
           </div>
         </div>
       </section>

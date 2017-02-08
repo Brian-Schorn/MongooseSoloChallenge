@@ -11,16 +11,23 @@ this.getList = function () {
 };
 
   //post
-this.addPerson = function () {
-
+this.addPerson = function (person) {
+  console.log("Adding:",person);
+  return $http.post('/person', person);
 }
 
   //put
-
+this.updatePerson = function(id, updatedData) {
+  console.log("Updating", id, "with", updatedData)
+  return $http.put('/person/'+id, updatedData)
+}
 
 
   //delete
-
+this.deletePerson = function (id) {
+  console.log("Deleting:", id);
+  return $http.delete('/person/' + id);
+}
 
 
 

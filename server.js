@@ -9,18 +9,18 @@ var app = express();
 
 app.use(bodyParser.json());
 
-/** --- MONGOOSE CONNECTION --- **/
+/** --- Mongoose Connection --- **/
 mongoose.connect('mongodb://localhost:27017/upsilon');
 
 mongoose.connection.on('connected', function () {
-  console.log('Sweet connected to database');
+  console.log('Sweet! connected to database');
 });
 
 mongoose.connection.on('error', function () {
-  console.log('Bad not connected to database');
+  console.log('Frak! Not connected to database');
 });
 
-/** -- ROUTES -- **/
+/** --- ROUTES --- **/
 app.use(express.static('public'));
 app.use('/person', person);
 
